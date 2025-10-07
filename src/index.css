@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+
+#info-cont::-webkit-scrollbar {
+  width: 8px;
+}
+
+#info-cont::-webkit-scrollbar-track {
+  background: transparent; /* or use a light color if needed */
+
+}
+
+#info-cont::-webkit-scrollbar-thumb {
+  background-color: #aa34ff; /* custom color */
+  border-radius: 10px;
+  border: 2px solid transparent; /* for inner padding look */
+  background-clip: padding-box;
+}
+
+#info-cont::-webkit-scrollbar-thumb:hover {
+  background-color: #9810fd; /* darker on hover */
+}
