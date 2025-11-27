@@ -376,6 +376,10 @@ function Map() {
     }
   }, [setPosition]);
 
+  // Track all used x and y values
+  const usedX = new Set();
+  const usedY = new Set();
+
   return (
     <div
       ref={containerRef}
@@ -412,8 +416,20 @@ function Map() {
         drag={false}
       />
 
-      {info.map((info) => (
+
+
+      {info.map(info =>
         info?.location?.map((pin, index) => {
+
+          // ❗ If x OR y is already used, skip element
+          if (usedX.has(pin.x) && usedY.has(pin.y)) {
+            return null;
+          }
+
+          // Otherwise mark them as used
+          usedX.add(pin.x);
+          usedY.add(pin.y);
+
           const pinX = displayValues.x + pin.x * displayValues.scale;
           const pinY = displayValues.y + pin.y * displayValues.scale;
 
@@ -421,18 +437,12 @@ function Map() {
             <motion.div
               key={index}
               className="absolute z-10 pointer-events-auto transform -translate-x-1/2 -translate-y-full"
-              style={{
-                left: pinX,
-                top: pinY,
-              }}
+              style={{ left: pinX, top: pinY }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               <motion.div
                 className="group flex gap-1 items-center hover:bg-opacity-50 px-2 py-1 rounded text-white text-xs font-medium cursor-pointer"
-                // style={{ '--hover-color': pin.color }}
-                // onMouseEnter={(e) => e.currentTarget.style.backgroundColor = pin.color}
-                // onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 onClick={() => openInfoModal(info)}
                 title={pin.label}
                 initial={{ opacity: 0, y: -10 }}
@@ -440,12 +450,12 @@ function Map() {
                 transition={{ delay: index * 0.1 }}
               >
                 <img className="w-9" src={PinImage} alt="📍" />
-                {/* <span className="text-white font-bold group-hover:flex hidden">{pin.label}</span> */}
               </motion.div>
             </motion.div>
           );
         })
-      ))}
+      )}
+
       {/* {pins.map((pin, index) => {
 
       })} */}
