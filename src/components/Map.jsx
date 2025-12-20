@@ -1,7 +1,7 @@
 import { useRef, useState, useCallback, useEffect } from "react";
-import { useMotionValue, animate, motion } from "framer-motion";
+import { useMotionValue, animate } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { ZoomIn, ZoomOut, RotateCcw, Maximize2 } from "lucide-react";
-import MapImage from '../assets/map.png'
 import MapFull from '../assets/mapFull.png'
 import PinImage from '../assets/pin2.png'
 import { info } from '../data.json'
@@ -396,7 +396,7 @@ function Map() {
       onMouseLeave={handleMouseUp}
 
     >
-      <motion.div
+      <Motion.div
         className="absolute origin-top-left"
         style={{
           width: MAP_WIDTH,
@@ -434,14 +434,14 @@ function Map() {
           const pinY = displayValues.y + pin.y * displayValues.scale;
 
           return (
-            <motion.div
+            <Motion.div
               key={index}
               className="absolute z-10 pointer-events-auto transform -translate-x-1/2 -translate-y-full"
               style={{ left: pinX, top: pinY }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.div
+              <Motion.div
                 className="group flex gap-1 items-center hover:bg-opacity-50 px-2 py-1 rounded text-white text-xs font-medium cursor-pointer"
                 onClick={() => openInfoModal(info)}
                 title={pin.label}
@@ -450,8 +450,8 @@ function Map() {
                 transition={{ delay: index * 0.1 }}
               >
                 <img className="w-9" src={PinImage} alt="📍" />
-              </motion.div>
-            </motion.div>
+              </Motion.div>
+            </Motion.div>
           );
         })
       )}
@@ -460,13 +460,13 @@ function Map() {
 
       })} */}
 
-      <motion.div
+      <Motion.div
         className="fixed top-4 right-4 bg-black/80 backdrop-blur-sm rounded-lg p-2 flex flex-col gap-2 z-20"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <motion.button
+        <Motion.button
           onClick={zoomIn}
           className="p-3 text-white hover:bg-white/20 rounded transition-colors touch-manipulation"
           title="Zoom In (+)"
@@ -475,8 +475,8 @@ function Map() {
           style={{ minHeight: '44px', minWidth: '44px' }}
         >
           <ZoomIn size={20} />
-        </motion.button>
-        <motion.button
+        </Motion.button>
+        <Motion.button
           onClick={zoomOut}
           className="p-3 text-white hover:bg-white/20 rounded transition-colors touch-manipulation"
           title="Zoom Out (-)"
@@ -485,8 +485,8 @@ function Map() {
           style={{ minHeight: '44px', minWidth: '44px' }}
         >
           <ZoomOut size={20} />
-        </motion.button>
-        <motion.button
+        </Motion.button>
+        <Motion.button
           onClick={resetView}
           className="p-3 text-white hover:bg-white/20 rounded transition-colors touch-manipulation"
           title="Reset (0)"
@@ -495,8 +495,8 @@ function Map() {
           style={{ minHeight: '44px', minWidth: '44px' }}
         >
           <RotateCcw size={20} />
-        </motion.button>
-        <motion.button
+        </Motion.button>
+        <Motion.button
           onClick={fitToScreen}
           className="p-3 text-white hover:bg-white/20 rounded transition-colors touch-manipulation"
           title="Fit to Screen (F)"
@@ -505,10 +505,10 @@ function Map() {
           style={{ minHeight: '44px', minWidth: '44px' }}
         >
           <Maximize2 size={20} />
-        </motion.button>
-      </motion.div>
+        </Motion.button>
+      </Motion.div>
 
-      <motion.div
+      <Motion.div
         className="fixed bottom-4 left-4 bg-black/80 backdrop-blur-sm rounded-lg px-3 py-2 text-white text-sm font-mono z-20"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -517,9 +517,9 @@ function Map() {
         Zoom: {Math.round(displayValues.scale * 100)}% |
         X: {Math.round(displayValues.x)} |
         Y: {Math.round(displayValues.y)}
-      </motion.div>
+      </Motion.div>
 
-      <motion.div
+      <Motion.div
         className="fixed top-4 left-4 bg-black/80 backdrop-blur-sm rounded-lg px-3 py-2 text-white text-xs z-20"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -528,7 +528,7 @@ function Map() {
         <div className="font-semibold mb-1">Controls:</div>
         <div>Drag to pan • Pinch/scroll to zoom</div>
         <div>+/- zoom • 0 reset • F fit screen</div>
-      </motion.div>
+      </Motion.div>
     </div>
   );
 }

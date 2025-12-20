@@ -11,7 +11,7 @@
 }
 
 #info-cont::-webkit-scrollbar-thumb {
-  background-color: #aa34ff; /* custom color */
+  background-color: #4f39f6; /* custom color */
   border-radius: 10px;
   border: 2px solid transparent; /* for inner padding look */
   background-clip: padding-box;
