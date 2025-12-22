@@ -17,11 +17,11 @@ function Map() {
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const scale = useMotionValue(MIN_SCALE);
+  const scale = useMotionValue(1.5);
 
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  const [displayValues, setDisplayValues] = useState({ x: 0, y: 0, scale: MIN_SCALE });
+  const [displayValues, setDisplayValues] = useState({ x: 0, y: 0, scale: 1.5 });
 
 
   useEffect(() => {
@@ -257,7 +257,7 @@ function Map() {
   }, [x, y, scale, animateTo, getContainerSize]);
 
   const resetView = useCallback(() => {
-    animateTo(0, 0, 1, 0.6);
+    animateTo(0, 0, 1.5, 0.6);
   }, [animateTo]);
 
   const fitToScreen = useCallback(() => {
@@ -369,10 +369,10 @@ function Map() {
 
     if (isSmallDevice) {
       // For smaller devices (e.g. mobile/tablet)
-      setPosition(-340, -550, 0.7);
+      setPosition(-502, -1000, 1);
     } else {
       // For larger devices (e.g. desktops)
-      setPosition(70, -920, 1);
+      setPosition(-590, -2219, 1.85);
     }
   }, [setPosition]);
 

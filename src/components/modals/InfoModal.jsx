@@ -48,7 +48,7 @@ const InfoModal = () => {
                                 <h1 className='text-2xl'>დისქლეიმერი</h1>
                                 <div className='flex flex-wrap items-center gap-4 mt-5'>
                                     {partners.slice(3,partners.length).map((p, i) => (
-                                        <img className="h-25" key={i} src={p} />
+                                        <img className="h-15" key={i} src={p} />
                                     ))}
                                 </div>
                             </div>
